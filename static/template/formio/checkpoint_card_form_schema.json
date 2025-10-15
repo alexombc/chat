@@ -1,0 +1,770 @@
+{
+  "display": "form",
+  "title": "Карточка создания контрольной точки",
+  "name": "checkpointCardForm",
+  "path": "checkpointcardform",
+  "type": "form",
+  "tags": [
+    "project",
+    "checkpoint",
+    "milestone",
+    "tracking"
+  ],
+  "settings": {
+    "pdf": {
+      "id": "checkpoint-card-pdf",
+      "src": ""
+    }
+  },
+  "components": [
+    {
+      "label": "Основная информация",
+      "key": "basicInfo",
+      "type": "fieldset",
+      "legend": "Основная информация о контрольной точке",
+      "input": false,
+      "tableView": false,
+      "components": [
+        {
+          "input": false,
+          "key": "basicInfoColumns",
+          "tableView": false,
+          "label": "Columns",
+          "type": "columns",
+          "columns": [
+            {
+              "components": [
+                {
+                  "label": "ID",
+                  "placeholder": "Уникальный идентификатор",
+                  "tooltip": "Уникальный числовой идентификатор контрольной точки в проекте",
+                  "tableView": true,
+                  "defaultValue": 16,
+                  "validate": {
+                    "required": true,
+                    "min": 1,
+                    "customMessage": "ID должен быть положительным числом"
+                  },
+                  "validateWhenHidden": false,
+                  "errorLabel": "Некорректный ID",
+                  "key": "id",
+                  "type": "number",
+                  "input": true
+                }
+              ],
+              "width": 3,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md"
+            },
+            {
+              "components": [
+                {
+                  "label": "Категория",
+                  "placeholder": "Выберите категорию",
+                  "tooltip": "Тип деятельности или область работ контрольной точки",
+                  "tableView": true,
+                  "defaultValue": "Внедрение",
+                  "validate": {
+                    "required": true,
+                    "customMessage": "Необходимо выбрать категорию"
+                  },
+                  "validateWhenHidden": false,
+                  "errorLabel": "Категория не выбрана",
+                  "key": "category",
+                  "type": "select",
+                  "input": true,
+                  "data": {
+                    "values": [
+                      {
+                        "label": "Планирование",
+                        "value": "Планирование"
+                      },
+                      {
+                        "label": "Анализ",
+                        "value": "Анализ"
+                      },
+                      {
+                        "label": "Проектирование",
+                        "value": "Проектирование"
+                      },
+                      {
+                        "label": "Разработка",
+                        "value": "Разработка"
+                      },
+                      {
+                        "label": "Тестирование",
+                        "value": "Тестирование"
+                      },
+                      {
+                        "label": "Внедрение",
+                        "value": "Внедрение"
+                      },
+                      {
+                        "label": "Интеграция",
+                        "value": "Интеграция"
+                      },
+                      {
+                        "label": "Инфраструктура",
+                        "value": "Инфраструктура"
+                      },
+                      {
+                        "label": "Документация",
+                        "value": "Документация"
+                      },
+                      {
+                        "label": "Обучение",
+                        "value": "Обучение"
+                      },
+                      {
+                        "label": "Исправления",
+                        "value": "Исправления"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "width": 9,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md"
+            }
+          ]
+        },
+        {
+          "input": false,
+          "key": "nameColumns",
+          "tableView": false,
+          "label": "Columns",
+          "type": "columns",
+          "columns": [
+            {
+              "components": [
+                {
+                  "label": "Название контрольной точки",
+                  "placeholder": "Введите название контрольной точки",
+                  "tooltip": "Краткое, понятное название этапа или вехи проекта",
+                  "tableView": true,
+                  "defaultValue": "Пилотное внедрение",
+                  "validate": {
+                    "required": true,
+                    "minLength": 5,
+                    "maxLength": 200,
+                    "customMessage": "Название должно содержать от 5 до 200 символов"
+                  },
+                  "validateWhenHidden": false,
+                  "errorLabel": "Некорректное название",
+                  "key": "name",
+                  "type": "textfield",
+                  "input": true
+                }
+              ],
+              "width": 12,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Временные рамки",
+      "key": "timeframes",
+      "type": "fieldset",
+      "legend": "Планируемые, фактические и прогнозируемые даты",
+      "input": false,
+      "tableView": false,
+      "components": [
+        {
+          "input": false,
+          "key": "startDatesColumns",
+          "tableView": false,
+          "label": "Columns",
+          "type": "columns",
+          "columns": [
+            {
+              "components": [
+                {
+                  "label": "Плановое начало",
+                  "placeholder": "дд.мм.гггг",
+                  "tooltip": "Запланированная дата начала работ по контрольной точке",
+                  "tableView": true,
+                  "defaultValue": "2024-11-11",
+                  "validate": {
+                    "required": true,
+                    "customMessage": "Укажите плановую дату начала"
+                  },
+                  "validateWhenHidden": false,
+                  "errorLabel": "Некорректная дата",
+                  "key": "plannedStart",
+                  "type": "datetime",
+                  "input": true,
+                  "format": "yyyy-MM-dd",
+                  "enableDate": true,
+                  "enableTime": false
+                }
+              ],
+              "width": 6,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md"
+            },
+            {
+              "components": [
+                {
+                  "label": "Фактическое начало",
+                  "placeholder": "дд.мм.гггг",
+                  "tooltip": "Фактическая дата начала работ по контрольной точке",
+                  "tableView": true,
+                  "defaultValue": "2024-11-29",
+                  "validateWhenHidden": false,
+                  "errorLabel": "Некорректная дата",
+                  "key": "actualStart",
+                  "type": "datetime",
+                  "input": true,
+                  "format": "yyyy-MM-dd",
+                  "enableDate": true,
+                  "enableTime": false
+                }
+              ],
+              "width": 6,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md"
+            }
+          ]
+        },
+        {
+          "input": false,
+          "key": "endDatesColumns",
+          "tableView": false,
+          "label": "Columns",
+          "type": "columns",
+          "columns": [
+            {
+              "components": [
+                {
+                  "label": "Плановое окончание",
+                  "placeholder": "дд.мм.гггг",
+                  "tooltip": "Запланированная дата завершения работ по контрольной точке",
+                  "tableView": true,
+                  "defaultValue": "2024-11-25",
+                  "validate": {
+                    "required": true,
+                    "customMessage": "Укажите плановую дату окончания"
+                  },
+                  "validateWhenHidden": false,
+                  "errorLabel": "Некорректная дата",
+                  "key": "plannedEnd",
+                  "type": "datetime",
+                  "input": true,
+                  "format": "yyyy-MM-dd",
+                  "enableDate": true,
+                  "enableTime": false
+                }
+              ],
+              "width": 4,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md"
+            },
+            {
+              "components": [
+                {
+                  "label": "Фактическое окончание",
+                  "placeholder": "дд.мм.гггг",
+                  "tooltip": "Фактическая дата завершения работ по контрольной точке",
+                  "tableView": true,
+                  "validateWhenHidden": false,
+                  "errorLabel": "Некорректная дата",
+                  "key": "actualEnd",
+                  "type": "datetime",
+                  "input": true,
+                  "format": "yyyy-MM-dd",
+                  "enableDate": true,
+                  "enableTime": false
+                }
+              ],
+              "width": 4,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md"
+            },
+            {
+              "components": [
+                {
+                  "label": "Прогнозируемое окончание",
+                  "placeholder": "дд.мм.гггг",
+                  "tooltip": "Прогнозируемая дата завершения работ по контрольной точке",
+                  "tableView": true,
+                  "defaultValue": "2024-12-18",
+                  "validateWhenHidden": false,
+                  "errorLabel": "Некорректная дата",
+                  "key": "forecastEnd",
+                  "type": "datetime",
+                  "input": true,
+                  "format": "yyyy-MM-dd",
+                  "enableDate": true,
+                  "enableTime": false
+                }
+              ],
+              "width": 4,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Бюджет и стоимость",
+      "key": "budget",
+      "type": "fieldset",
+      "legend": "Плановый бюджет, фактические затраты и прогноз стоимости",
+      "input": false,
+      "tableView": false,
+      "components": [
+        {
+          "input": false,
+          "key": "budgetColumns",
+          "tableView": false,
+          "label": "Columns",
+          "type": "columns",
+          "columns": [
+            {
+              "components": [
+                {
+                  "label": "Плановый бюджет (руб.)",
+                  "placeholder": "0",
+                  "tooltip": "Запланированный бюджет на выполнение контрольной точки",
+                  "tableView": true,
+                  "defaultValue": 250000,
+                  "validate": {
+                    "required": true,
+                    "min": 0,
+                    "customMessage": "Плановый бюджет должен быть неотрицательным"
+                  },
+                  "validateWhenHidden": false,
+                  "errorLabel": "Некорректный бюджет",
+                  "key": "plannedBudget",
+                  "type": "currency",
+                  "input": true,
+                  "currency": "RUB",
+                  "delimiter": true
+                }
+              ],
+              "width": 4,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md"
+            },
+            {
+              "components": [
+                {
+                  "label": "Фактические затраты (руб.)",
+                  "placeholder": "0",
+                  "tooltip": "Фактически потраченные средства на контрольную точку",
+                  "tableView": true,
+                  "defaultValue": 180000,
+                  "validate": {
+                    "min": 0,
+                    "customMessage": "Фактические затраты должны быть неотрицательными"
+                  },
+                  "validateWhenHidden": false,
+                  "errorLabel": "Некорректная сумма",
+                  "key": "actualCost",
+                  "type": "currency",
+                  "input": true,
+                  "currency": "RUB",
+                  "delimiter": true
+                }
+              ],
+              "width": 4,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md"
+            },
+            {
+              "components": [
+                {
+                  "label": "Прогноз стоимости (руб.)",
+                  "placeholder": "0",
+                  "tooltip": "Прогнозируемая итоговая стоимость контрольной точки",
+                  "tableView": true,
+                  "defaultValue": 290000,
+                  "validate": {
+                    "min": 0,
+                    "customMessage": "Прогноз стоимости должен быть неотрицательным"
+                  },
+                  "validateWhenHidden": false,
+                  "errorLabel": "Некорректная сумма",
+                  "key": "forecastCost",
+                  "type": "currency",
+                  "input": true,
+                  "currency": "RUB",
+                  "delimiter": true
+                }
+              ],
+              "width": 4,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Трудозатраты",
+      "key": "effort",
+      "type": "fieldset",
+      "legend": "Плановые, фактические и прогнозируемые трудозатраты в часах",
+      "input": false,
+      "tableView": false,
+      "components": [
+        {
+          "input": false,
+          "key": "effortColumns",
+          "tableView": false,
+          "label": "Columns",
+          "type": "columns",
+          "columns": [
+            {
+              "components": [
+                {
+                  "label": "Плановые часы",
+                  "placeholder": "0",
+                  "tooltip": "Запланированное количество человеко-часов для выполнения контрольной точки",
+                  "tableView": true,
+                  "defaultValue": 200,
+                  "validate": {
+                    "required": true,
+                    "min": 0,
+                    "customMessage": "Плановые часы должны быть неотрицательными"
+                  },
+                  "validateWhenHidden": false,
+                  "errorLabel": "Некорректное количество часов",
+                  "key": "plannedEffortHours",
+                  "type": "number",
+                  "input": true
+                }
+              ],
+              "width": 4,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md"
+            },
+            {
+              "components": [
+                {
+                  "label": "Фактические часы",
+                  "placeholder": "0",
+                  "tooltip": "Фактически затраченное количество человеко-часов",
+                  "tableView": true,
+                  "defaultValue": 144,
+                  "validate": {
+                    "min": 0,
+                    "customMessage": "Фактические часы должны быть неотрицательными"
+                  },
+                  "validateWhenHidden": false,
+                  "errorLabel": "Некорректное количество часов",
+                  "key": "actualEffortHours",
+                  "type": "number",
+                  "input": true
+                }
+              ],
+              "width": 4,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md"
+            },
+            {
+              "components": [
+                {
+                  "label": "Прогноз часов",
+                  "placeholder": "0",
+                  "tooltip": "Прогнозируемое итоговое количество человеко-часов",
+                  "tableView": true,
+                  "defaultValue": 232,
+                  "validate": {
+                    "min": 0,
+                    "customMessage": "Прогноз часов должен быть неотрицательным"
+                  },
+                  "validateWhenHidden": false,
+                  "errorLabel": "Некорректное количество часов",
+                  "key": "forecastEffortHours",
+                  "type": "number",
+                  "input": true
+                }
+              ],
+              "width": 4,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Статус и качество",
+      "key": "statusQuality",
+      "type": "fieldset",
+      "legend": "Текущий статус, процент выполнения и показатели качества",
+      "input": false,
+      "tableView": false,
+      "components": [
+        {
+          "input": false,
+          "key": "statusColumns",
+          "tableView": false,
+          "label": "Columns",
+          "type": "columns",
+          "columns": [
+            {
+              "components": [
+                {
+                  "label": "Статус",
+                  "placeholder": "Выберите статус",
+                  "tooltip": "Текущий статус выполнения контрольной точки",
+                  "tableView": true,
+                  "defaultValue": "В процессе",
+                  "validate": {
+                    "required": true,
+                    "customMessage": "Необходимо выбрать статус"
+                  },
+                  "validateWhenHidden": false,
+                  "errorLabel": "Статус не выбран",
+                  "key": "status",
+                  "type": "select",
+                  "input": true,
+                  "data": {
+                    "values": [
+                      {
+                        "label": "Не начат",
+                        "value": "Не начат"
+                      },
+                      {
+                        "label": "В процессе",
+                        "value": "В процессе"
+                      },
+                      {
+                        "label": "Завершен",
+                        "value": "Завершен"
+                      },
+                      {
+                        "label": "Приостановлен",
+                        "value": "Приостановлен"
+                      },
+                      {
+                        "label": "Отменен",
+                        "value": "Отменен"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "width": 3,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md"
+            },
+            {
+              "components": [
+                {
+                  "label": "% выполнения",
+                  "placeholder": "0",
+                  "tooltip": "Процент готовности контрольной точки от 0 до 100",
+                  "tableView": true,
+                  "defaultValue": 75,
+                  "validate": {
+                    "required": true,
+                    "min": 0,
+                    "max": 100,
+                    "customMessage": "Процент должен быть от 0 до 100"
+                  },
+                  "validateWhenHidden": false,
+                  "errorLabel": "Некорректный процент",
+                  "key": "completionPercentage",
+                  "type": "number",
+                  "input": true
+                }
+              ],
+              "width": 3,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md"
+            },
+            {
+              "components": [
+                {
+                  "label": "Оценка качества",
+                  "placeholder": "0",
+                  "tooltip": "Оценка качества выполнения от 0 до 100 баллов",
+                  "tableView": true,
+                  "defaultValue": 88,
+                  "validate": {
+                    "min": 0,
+                    "max": 100,
+                    "customMessage": "Оценка должна быть от 0 до 100"
+                  },
+                  "validateWhenHidden": false,
+                  "errorLabel": "Некорректная оценка",
+                  "key": "qualityScore",
+                  "type": "number",
+                  "input": true
+                }
+              ],
+              "width": 3,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md"
+            },
+            {
+              "components": [
+                {
+                  "label": "Уровень риска",
+                  "placeholder": "Выберите уровень",
+                  "tooltip": "Оценка уровня риска для контрольной точки",
+                  "tableView": true,
+                  "defaultValue": "Высокий",
+                  "validate": {
+                    "required": true,
+                    "customMessage": "Необходимо выбрать уровень риска"
+                  },
+                  "validateWhenHidden": false,
+                  "errorLabel": "Уровень риска не выбран",
+                  "key": "riskLevel",
+                  "type": "select",
+                  "input": true,
+                  "data": {
+                    "values": [
+                      {
+                        "label": "Низкий",
+                        "value": "Низкий"
+                      },
+                      {
+                        "label": "Средний",
+                        "value": "Средний"
+                      },
+                      {
+                        "label": "Высокий",
+                        "value": "Высокий"
+                      },
+                      {
+                        "label": "Критический",
+                        "value": "Критический"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "width": 3,
+              "offset": 0,
+              "push": 0,
+              "pull": 0,
+              "size": "md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Дополнительная информация",
+      "key": "additionalInfo",
+      "type": "fieldset",
+      "legend": "Комментарии, заметки и дополнительные сведения",
+      "input": false,
+      "tableView": false,
+      "components": [
+        {
+          "label": "Описание и комментарии",
+          "placeholder": "Введите дополнительную информацию о контрольной точке",
+          "tooltip": "Подробное описание работ, комментарии, заметки и дополнительная информация",
+          "tableView": true,
+          "validate": {
+            "maxLength": 2000,
+            "customMessage": "Описание не должно превышать 2000 символов"
+          },
+          "validateWhenHidden": false,
+          "errorLabel": "Слишком длинное описание",
+          "key": "description",
+          "type": "textarea",
+          "input": true,
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "input": false,
+      "key": "actionButtons",
+      "tableView": false,
+      "label": "Columns",
+      "type": "columns",
+      "columns": [
+        {
+          "components": [
+            {
+              "label": "Сохранить черновик",
+              "showValidations": false,
+              "leftIcon": "bi-save",
+              "tooltip": "Сохранить карточку контрольной точки как черновик",
+              "customClass": "btn-secondary me-2",
+              "tableView": false,
+              "key": "saveDraft",
+              "type": "button",
+              "saveOnEnter": false,
+              "input": true
+            }
+          ],
+          "width": 6,
+          "offset": 0,
+          "push": 0,
+          "pull": 0,
+          "size": "md"
+        },
+        {
+          "components": [
+            {
+              "label": "Сохранить контрольную точку",
+              "showValidations": false,
+              "rightIcon": "bi-check-circle",
+              "tooltip": "Сохранить и утвердить карточку контрольной точки",
+              "customClass": "float-end btn-primary",
+              "disableOnInvalid": true,
+              "tableView": false,
+              "key": "submitCheckpoint",
+              "type": "button",
+              "saveOnEnter": false,
+              "input": true
+            }
+          ],
+          "width": 6,
+          "offset": 0,
+          "push": 0,
+          "pull": 0,
+          "size": "md"
+        }
+      ]
+    }
+  ]
+}

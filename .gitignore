@@ -1,0 +1,39 @@
+# Ignore static libs folder
+static/libs/
+
+# Ignore temporary files and directories
+*.tmp
+*.temp
+*.log
+*.cache
+.DS_Store
+Thumbs.db
+
+# Ignore IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore system files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore build outputs
+dist/
+build/
+*.min.js
+*.min.css
+
+# Ignore local configuration files
+*.local
+config.local
+
+# Ignore OS generated files
+.DS_Store
+Desktop.ini
+ehthumbs.db
+Icon?
+Thumbs.db

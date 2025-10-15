@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with LLM - Markdown Support</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    
+    <!-- Bootstrap CSS -->
+    <link href="../libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="../libs/bootstrap/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="../libs/fontawesome/css/all.min.css" rel="stylesheet">
+    <!-- FormIO CSS -->
+    <link href="../libs/formiojs/formio.full.min.css" rel="stylesheet">
+    <!-- Markdown-it CSS для подсветки кода -->
+    <link href="../libs/highlight.js/github-dark.min.css" rel="stylesheet">
+    <!-- KaTeX CSS для математических формул -->
+    <link href="../libs/katex/katex.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"> -->
+    
+    <!-- Стили для Mermaid диаграмм и фиксированной панели -->
+    <style>
+        /* Фиксированная высота для body и html */
+        html, body {
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        /* Контейнер на всю высоту */
+        .container-fluid {
+            height: 100vh;
+        }
+        
+        /* Левая панель фиксированная */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 25%;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        /* Правая панель с отступом слева */
+        .main-content {
+            margin-left: 25%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        /* Стили для resize сепаратора */
+        .sidebar-resizer {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            cursor: col-resize;
+            background: transparent;
+            z-index: 1001;
+        }
+        
+        .sidebar-resizer:hover {
+            background: var(--bs-primary);
+        }
+        
+        .sidebar-resizer:hover::after {
+            content: '\F1C4';
+            font-family: 'bootstrap-icons';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(90deg);
+            color: white;
+            font-size: 12px;
+        }
+        
+        /* Стили для модульной структуры сайдбара */
+        .sidebar-header {
+            flex-shrink: 0;
+        }
+        
+        .sidebar-breadcrumbs {
+            flex-shrink: 0;
+            display: none;
+        }
+        
+        .sidebar-breadcrumbs.show {
+            display: block;
+        }
+        
+        .sidebar-body {
+            flex: 1;
+            overflow-y: auto;
+        }
+        
+        .sidebar-footer {
+            flex-shrink: 0;
+        }
+        
+        /* Стили для Mermaid диаграмм */
+        .mermaid-diagram {
+            text-align: center;
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: var(--bs-body-bg);
+            border-radius: 0.375rem;
+            border: 1px solid var(--bs-border-color);
+        }
+        
+        .mermaid-diagram svg {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Стили для темной темы */
+        [data-bs-theme="dark"] .mermaid-diagram {
+            background-color: var(--bs-dark);
+        }
+        
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+        }
+        
+        /* Минимальные стили для анимации нотификаций */
+        .notification-toast {
+            animation: slideInLeft 0.3s ease-out;
+        }
+        
+        .notification-toast.removing {
+            animation: slideOutLeft 0.3s ease-in forwards;
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOutLeft {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(-100%); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Левая панель -->
+        <div class="sidebar bg-body-secondary border-end d-flex flex-column">
+            <!-- Сепаратор для изменения размера -->
+            <div class="sidebar-resizer"></div>
+            
+            <!-- Заголовок сайдбара -->
+            <div id="sidebar-header" class="sidebar-header">
+                <!-- Контент будет загружен модулем header.js -->
+            </div>
+            
+            <!-- Хлебные крошки (скрыты по умолчанию) -->
+            <div id="sidebar-breadcrumbs" class="sidebar-breadcrumbs">
+                <!-- Контент будет загружен модулем breadcrumbs.js -->
+            </div>
+            
+            <!-- Основное содержимое сайдбара -->
+            <div id="sidebar-body" class="sidebar-body">
+                <!-- Контент будет загружаться динамически через EventBus -->
+            </div>
+            
+            <!-- Подвал сайдбара -->
+            <div id="sidebar-footer" class="sidebar-footer">
+                <!-- Контент будет загружен модулем footer.js -->
+            </div>
+        </div>
+        
+        <!-- Правая панель - чат -->
+        <div class="main-content d-flex flex-column">
+            <div id="chatContainer" class="h-100">
+                <!-- Контент чата будет загружен модулем -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Глобальный контейнер для нотификаций -->
+    <div id="global-notifications-container" class="position-fixed" style="bottom: 20px; left: 20px; z-index: 9999; max-width: 400px;">
+        <!-- Нотификации будут добавляться динамически -->
+    </div>
+
+    <!-- Модальное окно выбора модели создается динамически в llm_selector.js -->
+
+    <!-- Bootstrap JS -->
+    <script src="../libs/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- FormIO.js -->
+    <script src="../libs/formiojs/formio.full.min.js"></script>
+    <!-- Markdown-it -->
+    <script src="../libs/markdown-it/markdown-it.min.js"></script>
+    <!-- Highlight.js для подсветки кода -->
+    <script src="../libs/highlight.js/highlight.min.js"></script>
+    <script src="../libs/highlight.js/python.min.js"></script>
+    <!-- D3.js для интерактивных диаграмм -->
+    <script src="../libs/d3/d3.min.js"></script>
+    <!-- Mermaid для диаграмм -->
+    <script src="../libs/mermaid/mermaid.min.js"></script>
+    <!-- KaTeX для математических формул -->
+    <script src="../libs/katex/katex.min.js"></script>
+    
+    <!-- Pyodide для выполнения Python кода -->
+    <script src="../libs/pyodide/pyodide.js"></script>
+    
+    <!-- Monaco Editor -->
+    <!-- <script src="../libs/monaco-editor/min/vs/loader.js"></script> -->
+    
+    <!-- EventBus -->
+    <script src="core/eventbus.js"></script>
+    <!-- Модуль настроек -->
+    <script src="settings/chat-settings.js"></script>
+    <!-- Сканер тем -->
+    <script src="themes/theme-scanner.js"></script>
+    <!-- Модуль превью файлов -->
+    <script src="file-proc/file-preview.js"></script>
+    <!-- Основной скрипт страницы -->
+    <script src="core/main.js"></script>
+    
+    <!-- Ядро markdown -->
+    <script src="chat/markdown/markdown-core.js"></script>
+    
+    <!-- Плагины markdown (порядок не важен) -->
+    <script src="chat/markdown/mermaid-plugin.js"></script>
+    <script src="chat/markdown/math-plugin.js"></script>
+    <script src="chat/markdown/mindmap-plugin.js"></script>
+    <script src="chat/markdown/footnote-plugin.js"></script>
+    <script src="chat/markdown/abbr-plugin.js"></script>
+    <script src="chat/markdown/sub-sup-plugin.js"></script>
+    <script src="chat/markdown/container-plugin.js"></script>
+    <script src="chat/markdown/formio-plugin.js"></script>
+    <script src="chat/markdown/pyodide-plugin.js"></script>
+    <script src="chat/markdown/docx-plugin.js"></script>
+    
+    <!-- Плагины чата -->
+    <script src="chat/plugins/voice-input-plugin.js"></script>
+    
+    <!-- Рендерер сообщений -->
+    <script src="chat/message-renderer.js"></script>
+    
+    <!-- Модуль чата -->
+    <script src="chat/chat-module.js"></script>
+    <!-- Модуль выбора модели LLM -->
+    <script src="chat/llm_selector.js"></script>
+    <!-- Модуль улучшения запросов -->
+    <script src="chat/enhancement.js"></script>
+    
+    <!-- Модули сайдбара -->
+    <script src="sidebar/resize.js"></script>
+    <script src="sidebar/header.js"></script>
+    <script src="sidebar/footer.js"></script>
+    <script src="sidebar/breadcrumbs.js"></script>
+    <script src="sidebar/chats.js"></script>
+    <script src="sidebar/context.js"></script>
+    <!-- Координатор сайдбара (должен загружаться последним) -->
+    <script src="sidebar/sidebar-coordinator.js"></script>
+    
+    <!-- Глобальная система нотификаций -->
+    <script>
+        // Конфигурация нотификаций
+        const NOTIFICATION_CONFIG = {
+            // Позиционирование контейнера нотификаций
+            position: {
+                bottom: '20px',
+                left: '20px',
+                zIndex: 9999
+            },
+            // Длительность показа по умолчанию (миллисекунды)
+            defaultDuration: 5000,
+            // Максимальное количество одновременно показываемых нотификаций
+            maxNotifications: 5,
+            // Задержка перед удалением элемента после анимации (миллисекунды)
+            removeDelay: 300
+        };
+
+        // Глобальный обработчик нотификаций
+        function initializeNotificationSystem() {
+            const container = document.getElementById('global-notifications-container');
+            if (!container) {
+                console.error('Контейнер нотификаций не найден');
+                return;
+            }
+
+            // Подписка на события нотификаций через EventBus
+            if (window.eventBus) {
+                // Обработчики для конкретных типов нотификаций
+                window.eventBus.on('notification.show.success', (data) => {
+                    console.log('Success notification received:', data);
+                    showNotification('success', data);
+                });
+                
+                window.eventBus.on('notification.show.error', (data) => {
+                    console.log('Error notification received:', data);
+                    showNotification('error', data);
+                });
+                
+                window.eventBus.on('notification.show.warning', (data) => {
+                    console.log('Warning notification received:', data);
+                    showNotification('warning', data);
+                });
+                
+                window.eventBus.on('notification.show.info', (data) => {
+                    console.log('Info notification received:', data);
+                    showNotification('info', data);
+                });
+            } else {
+                console.error('EventBus не найден');
+            }
+        }
+
+        // Функция показа нотификации
+        function showNotification(type, data) {
+            const container = document.getElementById('global-notifications-container');
+            if (!container) return;
+
+            console.log('showNotification called with type:', type, 'data:', data); // Отладка
+
+            // Проверяем лимит нотификаций
+            const existingToasts = container.querySelectorAll('.toast');
+            if (existingToasts.length >= NOTIFICATION_CONFIG.maxNotifications) {
+                // Удаляем самую старую нотификацию
+                const oldestToast = existingToasts[0];
+                if (oldestToast) {
+                    hideNotification(oldestToast);
+                }
+            }
+
+            // Определяем Bootstrap классы для разных типов
+            const typeClasses = {
+                'success': 'text-bg-success',
+                'error': 'text-bg-danger',
+                'warning': 'text-bg-warning',
+                'info': 'text-bg-info'
+            };
+
+            const typeIcons = {
+                'success': 'bi-check-circle',
+                'error': 'bi-exclamation-triangle',
+                'warning': 'bi-exclamation-triangle',
+                'info': 'bi-info-circle'
+            };
+
+            const bgClass = typeClasses[type] || 'text-bg-secondary';
+            const iconClass = typeIcons[type] || 'bi-bell';
+            console.log('Using bgClass:', bgClass, 'iconClass:', iconClass); // Отладка
+            const duration = data.duration || NOTIFICATION_CONFIG.defaultDuration;
+            const moduleId = data.moduleId || 'system';
+
+            // Создаем элемент нотификации
+            const toastElement = document.createElement('div');
+            toastElement.className = `toast notification-toast ${bgClass}`;
+            toastElement.setAttribute('role', 'alert');
+            toastElement.setAttribute('aria-live', 'assertive');
+            toastElement.setAttribute('aria-atomic', 'true');
+
+            toastElement.innerHTML = `
+                <div class="toast-header">
+                    <i class="${iconClass} me-2"></i>
+                    <strong class="me-auto">${moduleId}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Закрыть"></button>
+                </div>
+                <div class="toast-body">
+                    ${data.message}
+                </div>
+            `;
+
+            // Добавляем в контейнер (новые нотификации вверх)
+            container.insertBefore(toastElement, container.firstChild);
+
+            // Инициализируем Bootstrap Toast
+            const bsToast = new bootstrap.Toast(toastElement, {
+                autohide: true,
+                delay: duration
+            });
+
+            // Показываем нотификацию
+            bsToast.show();
+
+            // Обработчик скрытия
+            toastElement.addEventListener('hidden.bs.toast', () => {
+                setTimeout(() => {
+                    if (toastElement.parentNode) {
+                        toastElement.parentNode.removeChild(toastElement);
+                    }
+                }, NOTIFICATION_CONFIG.removeDelay);
+            });
+        }
+
+        // Функция скрытия нотификации с анимацией
+        function hideNotification(toastElement) {
+            toastElement.classList.add('removing');
+            const bsToast = bootstrap.Toast.getInstance(toastElement);
+            if (bsToast) {
+                bsToast.hide();
+            }
+        }
+
+        // Инициализация системы нотификаций после загрузки DOM
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeNotificationSystem();
+        });
+    </script>
+</body>
+</html>

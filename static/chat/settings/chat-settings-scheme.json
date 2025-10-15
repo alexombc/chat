@@ -1,0 +1,102 @@
+{
+  "display": "form",
+  "components": [
+    {
+      "label": "Tabs",
+      "components": [
+        {
+          "label": "Подключения",
+          "key": "tab1",
+          "components": [
+            {
+              "label": "URL API",
+              "placeholder": "https://openrouter.ai/api/v1/chat/completions",
+              "tooltip": "URL-адрес API для подключения к языковой модели. Поддерживаются OpenAI-совместимые API, включая OpenRouter, локальные серверы и другие провайдеры. Убедитесь, что URL корректен и сервер доступен. Примеры: https://api.openai.com/v1/chat/completions, https://openrouter.ai/api/v1/chat/completions, http://localhost:1234/v1/chat/completions",
+              "key": "llm_api_url",
+              "type": "textfield",
+              "defaultValue": "https://openrouter.ai/api/v1/chat/completions",
+              "input": true,
+              "validate": {
+                "required": true,
+                "pattern": "^https?://.*",
+                "customMessage": "URL должен начинаться с http:// или https://"
+              },
+              "tableView": true
+            },
+            {
+              "label": "API ключ",
+              "placeholder": "Введите ваш API ключ",
+              "tooltip": "Секретный ключ для аутентификации в API языковой модели. Получите ключ у вашего провайдера (OpenAI, OpenRouter и др.). Храните ключ в безопасности и не передавайте третьим лицам. Ключ сохраняется локально в браузере. Для OpenRouter используйте ключи вида 'sk-or-v1-...', для OpenAI - 'sk-...'",
+              "key": "llm_api_key",
+              "type": "textfield",
+              "input": true,
+              "validate": {
+                "required": true,
+                "minLength": 10,
+                "customMessage": "API ключ должен содержать минимум 10 символов"
+              },
+              "tableView": true
+            },
+            {
+              "label": "Модель",
+              "placeholder": "openai/gpt-4.1",
+              "tooltip": "Название модели языковой модели для генерации ответов. Разные модели имеют различные возможности, скорость и стоимость. Популярные модели: openai/gpt-4.1, openai/gpt-3.5-turbo, anthropic/claude-3-sonnet, meta-llama/llama-2-70b-chat. Убедитесь, что выбранная модель поддерживается вашим API провайдером и у вас есть доступ к ней",
+              "key": "llm_model",
+              "type": "textfield",
+              "defaultValue": "openai/gpt-4.1",
+              "input": true,
+              "validate": {
+                "required": true,
+                "minLength": 3,
+                "customMessage": "Название модели должно содержать минимум 3 символа"
+              },
+              "tableView": true
+            },
+            {
+              "label": "Включить потоковую передачу ответа от LLM",
+              "tooltip": "Ответ от модели LLM будет приходить по частям, по мере генерации. Это ускоряет получение первых частей ответа. Если отключено, то весь ответ отдаётся единым блоком.",
+              "key": "enable_llm_stream",
+              "type": "checkbox",
+              "defaultValue": true,
+              "input": true,
+              "tableView": true
+            }
+          ]
+        },
+        {
+          "label": "Промпты",
+          "key": "промпты",
+          "components": [
+            {
+              "label": "Промпт для улучшения запроса пользователя",
+              "tooltip": "Промпт для улучшения и переформулирования запроса пользователя.\nОн доработает запроса пользователя, чтобы он стал более четким, детальным и эффективным для ИИ. \n\nЧто делает этот промпт:\nАнализирует ваш исходный запрос (userInput).\nУлучшает его: делает яснее, детальнее и эффективнее.\nВозвращает только готовый, улучшенный промпт, без каких-либо дополнительных комментариев.",
+              "applyMaskOn": "change",
+              "autoExpand": false,
+              "tableView": true,
+              "defaultValue": "Сгенерируй улучшенную версию этого промта (в ответе присылай только улучшенный промт — без пояснений, вводных фраз, маркеров списка, заполнителей или обрамляющих кавычек):\n${messageInput}",
+              "validateWhenHidden": false,
+              "key": "enhance",
+              "type": "textarea",
+              "input": true
+            }
+          ]
+        }
+      ],
+      "key": "tabs",
+      "type": "tabs",
+      "input": false,
+      "tableView": false
+    },
+    {
+      "label": "Submit",
+      "showValidations": false,
+      "disableOnInvalid": true,
+      "hidden": true,
+      "tableView": false,
+      "key": "submit",
+      "type": "button",
+      "input": true,
+      "saveOnEnter": false
+    }
+  ]
+}

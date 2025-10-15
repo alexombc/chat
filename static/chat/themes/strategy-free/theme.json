@@ -1,0 +1,30 @@
+{
+  "id": "strategy-free",
+  "name": "Strategy",
+  "description": "Современная темная тема для агентств с золотистыми акцентами от BootstrapMade",
+  "version": "1.0.0",
+  "author": "BootstrapMade.com",
+  "license": "Free",
+  "url": "https://bootstrapmade.com/strategy-bootstrap-agency-template/",
+  "category": "external",
+  "tags": ["dark", "agency", "modern", "professional", "gold", "business"],
+  "bootstrap_version": "5.3.6",
+  "preview_image": null,
+  "icon": "bi-palette-fill",
+  "files": {
+    "css": "assets/css/main.css",
+    "js": "assets/js/main.js",
+    "assets": "assets/"
+  },
+  "color_modes": ["dark"],
+  "features": [
+    "Темная цветовая схема",
+    "Золотистые акценты",
+    "Современный дизайн для агентств",
+    "Профессиональный внешний вид",
+    "Адаптивная верстка",
+    "Готовые компоненты для бизнеса"
+  ],
+  "installation_date": "2025-09-10T12:46:00Z",
+  "last_updated": "2025-09-10T12:46:00Z"
+}

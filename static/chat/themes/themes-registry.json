@@ -1,0 +1,177 @@
+{
+  "themes": [
+    {
+      "id": "light",
+      "name": "Светлая",
+      "description": "Стандартная светлая тема Bootstrap",
+      "version": "1.0.0",
+      "author": "Bootstrap",
+      "license": "MIT",
+      "category": "builtin",
+      "tags": ["light", "default", "bootstrap"],
+      "bootstrap_version": "5.3.0",
+      "preview_image": null,
+      "icon": "bi-sun-fill",
+      "enabled": true,
+      "files": {
+        "css": null,
+        "js": null
+      },
+      "color_modes": ["light"],
+      "features": [
+        "Стандартная светлая тема",
+        "Высокая читаемость",
+        "Классический дизайн"
+      ],
+      "installation_date": "2024-01-15T10:30:00Z",
+      "last_updated": "2024-01-15T10:30:00Z"
+    },
+    {
+      "id": "dark",
+      "name": "Темная",
+      "description": "Стандартная темная тема Bootstrap",
+      "version": "1.0.0",
+      "author": "Bootstrap",
+      "license": "MIT",
+      "category": "builtin",
+      "tags": ["dark", "default", "bootstrap"],
+      "bootstrap_version": "5.3.0",
+      "preview_image": null,
+      "icon": "bi-moon-fill",
+      "enabled": true,
+      "files": {
+        "css": null,
+        "js": null
+      },
+      "color_modes": ["dark"],
+      "features": [
+        "Стандартная темная тема",
+        "Снижение нагрузки на глаза",
+        "Современный дизайн"
+      ],
+      "installation_date": "2024-01-15T10:30:00Z",
+      "last_updated": "2024-01-15T10:30:00Z"
+    },
+    {
+      "id": "test-brown-theme",
+      "name": "Тестовая коричневая тема",
+      "description": "Тестовая тема с полностью коричневой цветовой палитрой для демонстрации работы системы тем",
+      "version": "1.0.0",
+      "author": "Chat Project",
+      "license": "MIT",
+      "category": "external",
+      "tags": ["test", "brown", "demo", "external"],
+      "bootstrap_version": "5.3.0",
+      "preview_image": "preview.jpg",
+      "icon": "bi-palette-fill",
+      "enabled": true,
+      "files": {
+        "css": "theme.css",
+        "js": null,
+        "assets": "assets/"
+      },
+      "color_modes": ["light"],
+      "features": [
+        "Полностью коричневая цветовая палитра",
+        "Демонстрация работы кастомных тем",
+        "Все элементы в оттенках коричневого",
+        "Тестирование системы тем Bootstrap 5.3"
+      ],
+      "installation_date": "2024-01-15T10:30:00Z",
+      "last_updated": "2025-01-10T12:16:00Z"
+    },
+    {
+      "id": "devin-free",
+      "name": "Devin Free",
+      "description": "Современная бесплатная тема с чистым дизайном и профессиональным видом",
+      "version": "1.0.0",
+      "author": "Devin Theme",
+      "license": "Free",
+      "category": "external",
+      "tags": ["modern", "clean", "professional", "free", "portfolio"],
+      "bootstrap_version": "5.3.0",
+      "preview_image": null,
+      "icon": "bi-palette",
+      "enabled": false,
+      "files": {
+        "css": "assets/css/main.css",
+        "js": "assets/js/main.js",
+        "assets": "assets/"
+      },
+      "color_modes": ["light"],
+      "features": [
+        "Современный чистый дизайн",
+        "Профессиональный внешний вид",
+        "Адаптивная верстка",
+        "Оптимизированная производительность",
+        "Поддержка портфолио компонентов"
+      ],
+      "installation_date": "2024-01-15T10:30:00Z",
+      "last_updated": "2024-01-15T10:30:00Z"
+    },
+    {
+      "id": "startbootstrap-sb-admin-gh-pages-free",
+      "name": "SB Admin 2",
+      "description": "Популярная бесплатная админ тема от Start Bootstrap с современным интерфейсом",
+      "version": "4.2.1",
+      "author": "Start Bootstrap",
+      "license": "MIT",
+      "url": "https://startbootstrap.com/theme/sb-admin-2",
+      "category": "external",
+      "tags": ["admin", "dashboard", "free", "bootstrap", "startbootstrap"],
+      "bootstrap_version": "5.3.0",
+      "preview_image": null,
+      "icon": "bi-speedometer2",
+      "enabled": false,
+      "files": {
+        "css": "css/styles.css",
+        "js": "js/scripts.js",
+        "assets": "assets/"
+      },
+      "color_modes": ["light", "dark"],
+      "features": [
+        "Админ панель интерфейс",
+        "Современный дизайн",
+        "Поддержка графиков и таблиц",
+        "Адаптивная верстка",
+        "Готовые компоненты для дашборда",
+        "Поддержка темной темы"
+      ],
+      "installation_date": "2024-01-15T10:30:00Z",
+      "last_updated": "2024-01-15T10:30:00Z"
+    },
+    {
+      "id": "strategy-free",
+      "name": "Strategy",
+      "description": "Современная темная тема для агентств с золотистыми акцентами от BootstrapMade",
+      "version": "1.0.0",
+      "author": "BootstrapMade.com",
+      "license": "Free",
+      "url": "https://bootstrapmade.com/strategy-bootstrap-agency-template/",
+      "category": "external",
+      "tags": ["dark", "agency", "modern", "professional", "gold", "business"],
+      "bootstrap_version": "5.3.6",
+      "preview_image": null,
+      "icon": "bi-palette-fill",
+      "enabled": true,
+      "files": {
+        "css": "assets/css/main.css",
+        "js": "assets/js/main.js",
+        "assets": "assets/"
+      },
+      "color_modes": ["dark"],
+      "features": [
+        "Темная цветовая схема",
+        "Золотистые акценты",
+        "Современный дизайн для агентств",
+        "Профессиональный внешний вид",
+        "Адаптивная верстка",
+        "Готовые компоненты для бизнеса"
+      ],
+      "installation_date": "2025-09-10T12:46:00Z",
+      "last_updated": "2025-09-10T12:46:00Z"
+    }
+  ],
+  "last_scan": "2025-09-10T12:46:00Z",
+  "total_count": 6
+}

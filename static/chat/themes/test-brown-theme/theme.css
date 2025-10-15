@@ -1,0 +1,216 @@
+/**
+ * Тестовая коричневая тема - демонстрация работы системы кастомных тем
+ * Основана на Bootstrap 5.3+ CSS переменных
+ * Согласно официальной документации Bootstrap 5.3 Color Modes
+ * Все цвета выполнены в коричневых оттенках для наглядности
+ */
+
+[data-bs-theme="test-brown-theme"] {
+  /* Основные цвета - ВСЕ В КОРИЧНЕВЫХ ОТТЕНКАХ */
+  --bs-body-bg: #FAF0E6;
+  --bs-body-color: #3E2723;
+  --bs-body-color-rgb: 62, 39, 35;
+  --bs-emphasis-color: #2E1A14;
+  --bs-emphasis-color-rgb: 46, 26, 20;
+  --bs-secondary-color: #8D6E63;
+  --bs-secondary-color-rgb: 141, 110, 99;
+  --bs-secondary-bg: #EFEBE9;
+  --bs-secondary-bg-rgb: 239, 235, 233;
+  --bs-tertiary-color: rgba(62, 39, 35, 0.75);
+  --bs-tertiary-color-rgb: 62, 39, 35;
+  --bs-tertiary-bg: #F5F5DC;
+  --bs-tertiary-bg-rgb: 245, 245, 220;
+  
+  /* ВСЕ ЦВЕТА В ОТТЕНКАХ КОРИЧНЕВОГО для тестирования темы "Фокус" */
+  --bs-primary: #8B4513;
+  --bs-primary-rgb: 139, 69, 19;
+  --bs-primary-text-emphasis: #5D2F0A;
+  --bs-primary-bg-subtle: #F4E6D7;
+  --bs-primary-border-subtle: #D2B48C;
+  
+  --bs-secondary: #A0522D;
+  --bs-secondary-rgb: 160, 82, 45;
+  --bs-secondary-text-emphasis: #654321;
+  --bs-secondary-bg-subtle: #F5DEB3;
+  --bs-secondary-border-subtle: #DEB887;
+  
+  /* Состояния в коричневых оттенках */
+  --bs-success: #CD853F;
+  --bs-success-rgb: 205, 133, 63;
+  --bs-success-text-emphasis: #8B4513;
+  --bs-success-bg-subtle: #F5E6D3;
+  --bs-success-border-subtle: #DEB887;
+  
+  --bs-info: #D2691E;
+  --bs-info-rgb: 210, 105, 30;
+  --bs-info-text-emphasis: #A0522D;
+  --bs-info-bg-subtle: #F4E4BC;
+  --bs-info-border-subtle: #DEB887;
+  
+  --bs-warning: #B8860B;
+  --bs-warning-rgb: 184, 134, 11;
+  --bs-warning-text-emphasis: #8B6914;
+  --bs-warning-bg-subtle: #F5E6A3;
+  --bs-warning-border-subtle: #DAA520;
+  
+  --bs-danger: #A0522D;
+  --bs-danger-rgb: 160, 82, 45;
+  --bs-danger-text-emphasis: #654321;
+  --bs-danger-bg-subtle: #F5DEB3;
+  --bs-danger-border-subtle: #CD853F;
+  
+  --bs-light: #F5F5DC;
+  --bs-light-rgb: 245, 245, 220;
+  --bs-light-text-emphasis: #8D6E63;
+  --bs-light-bg-subtle: #FEFEFE;
+  --bs-light-border-subtle: #EFEBE9;
+  
+  --bs-dark: #3E2723;
+  --bs-dark-rgb: 62, 39, 35;
+  --bs-dark-text-emphasis: #5D4037;
+  --bs-dark-bg-subtle: #D7CCC8;
+  --bs-dark-border-subtle: #BCAAA4;
+  
+  /* Границы и разделители - коричневые */
+  --bs-border-color: #D7CCC8;
+  --bs-border-color-translucent: rgba(62, 39, 35, 0.175);
+  --bs-border-radius: 0.25rem;
+  --bs-border-width: 1px;
+  
+  /* Ссылки - коричневые */
+  --bs-link-color: #8D6E63;
+  --bs-link-hover-color: #5D4037;
+  --bs-link-color-rgb: 141, 110, 99;
+  --bs-link-hover-color-rgb: 93, 64, 55;
+  
+  /* Заголовки - коричневые */
+  --bs-heading-color: #3E2723;
+  
+  /* Код - коричневый */
+  --bs-code-color: #A0522D;
+  
+  /* Выделение - коричневое */
+  --bs-highlight-color: #3E2723;
+  --bs-highlight-bg: #F5DEB3;
+  
+  /* Формы - коричневые */
+  --bs-form-valid-color: #CD853F;
+  --bs-form-valid-border-color: #CD853F;
+  --bs-form-invalid-color: #A0522D;
+  --bs-form-invalid-border-color: #A0522D;
+}
+
+/* Специальные стили для темы фокус */
+[data-bs-theme="test-brown-theme"] .sidebar {
+  background-color: var(--bs-tertiary-bg);
+  border-color: var(--bs-border-color);
+}
+
+[data-bs-theme="test-brown-theme"] .main-content {
+  background-color: var(--bs-body-bg);
+}
+
+/* Приглушенные тени */
+[data-bs-theme="test-brown-theme"] .card,
+[data-bs-theme="test-brown-theme"] .modal-content,
+[data-bs-theme="test-brown-theme"] .dropdown-menu {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* Минимальные эффекты наведения */
+[data-bs-theme="test-brown-theme"] .btn:hover {
+  transform: none;
+  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.15);
+}
+
+/* Упрощенные границы для форм */
+[data-bs-theme="test-brown-theme"] .form-control,
+[data-bs-theme="test-brown-theme"] .form-select {
+  border-color: var(--bs-border-color);
+  box-shadow: none;
+}
+
+[data-bs-theme="test-brown-theme"] .form-control:focus,
+[data-bs-theme="test-brown-theme"] .form-select:focus {
+  border-color: var(--bs-primary);
+  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25);
+}
+
+/* Приглушенные уведомления */
+[data-bs-theme="test-brown-theme"] .toast {
+  background-color: var(--bs-secondary-bg);
+  border: 1px solid var(--bs-border-color);
+}
+
+/* Минимальная анимация */
+[data-bs-theme="test-brown-theme"] * {
+  transition-duration: 0.15s;
+}
+
+/* Упрощенные индикаторы загрузки */
+[data-bs-theme="test-brown-theme"] .spinner-border {
+  color: var(--bs-secondary);
+}
+
+/* Приглушенные цвета для markdown */
+[data-bs-theme="test-brown-theme"] .mermaid-diagram {
+  background-color: var(--bs-tertiary-bg);
+  border-color: var(--bs-border-color);
+}
+
+[data-bs-theme="test-brown-theme"] .hljs {
+  background: var(--bs-secondary-bg) !important;
+  color: var(--bs-body-color) !important;
+}
+
+/* Минимальные стили для подсветки кода */
+[data-bs-theme="test-brown-theme"] .hljs-keyword,
+[data-bs-theme="test-brown-theme"] .hljs-selector-tag,
+[data-bs-theme="test-brown-theme"] .hljs-title {
+  color: var(--bs-primary);
+}
+
+[data-bs-theme="test-brown-theme"] .hljs-string,
+[data-bs-theme="test-brown-theme"] .hljs-attr {
+  color: var(--bs-success);
+}
+
+[data-bs-theme="test-brown-theme"] .hljs-comment {
+  color: var(--bs-secondary-color);
+}
+
+/* Упрощенные стили для таблиц */
+[data-bs-theme="test-brown-theme"] .table {
+  --bs-table-striped-bg: var(--bs-tertiary-bg);
+  --bs-table-hover-bg: var(--bs-secondary-bg);
+}
+
+/* Минимальные стили для навигации */
+[data-bs-theme="test-brown-theme"] .nav-link {
+  color: var(--bs-body-color);
+}
+
+[data-bs-theme="test-brown-theme"] .nav-link:hover,
+[data-bs-theme="test-brown-theme"] .nav-link:focus {
+  color: var(--bs-primary);
+}
+
+/* Приглушенные бейджи */
+[data-bs-theme="test-brown-theme"] .badge {
+  background-color: var(--bs-secondary);
+  color: var(--bs-body-bg);
+}
+
+/* Упрощенные модальные окна */
+[data-bs-theme="test-brown-theme"] .modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Минимальные стили для прогресс-баров */
+[data-bs-theme="test-brown-theme"] .progress {
+  background-color: var(--bs-secondary-bg);
+}
+
+[data-bs-theme="test-brown-theme"] .progress-bar {
+  background-color: var(--bs-secondary);
+}

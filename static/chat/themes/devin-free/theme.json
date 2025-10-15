@@ -1,0 +1,27 @@
+{
+  "id": "devin-free",
+  "name": "Devin Free",
+  "description": "Современная бесплатная тема с чистым дизайном и профессиональным видом",
+  "version": "1.0.0",
+  "author": "Devin Theme",
+  "license": "Free",
+  "category": "external",
+  "tags": ["modern", "clean", "professional", "free", "portfolio"],
+  "bootstrap_version": "5.3.0",
+  "preview_image": null,
+  "files": {
+    "css": "assets/css/main.css",
+    "js": "assets/js/main.js",
+    "assets": "assets/"
+  },
+  "color_modes": ["light"],
+  "features": [
+    "Современный чистый дизайн",
+    "Профессиональный внешний вид",
+    "Адаптивная верстка",
+    "Оптимизированная производительность",
+    "Поддержка портфолио компонентов"
+  ],
+  "installation_date": "2024-01-15T10:30:00Z",
+  "last_updated": "2024-01-15T10:30:00Z"
+}
